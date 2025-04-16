@@ -6,12 +6,13 @@ import type { HardhatPlugin } from "hardhat/types/plugins";
 import pkg from "../package.json";
 import taskExampleTask from "./tasks/example-task.js";
 
-// At minimum, a HardhatPlugin must contain an `id`.
-// Here we use the name specified in package.json, removing the NPM namespace if present.
+// At minimum, a HardhatPlugin must contain an `id`.  Here we use the name specified in package.json.
+// We also set the optional `npmPackage` value, which is used for dependency validation in case of error.
 // Tasks, hook handlers, global options, and dependent plugins must be registered on the HardhatPlugin
 // object in order to have effect.
 const plugin: HardhatPlugin = {
-  id: pkg.name.split("/").pop()!,
+  id: pkg.name!,
+  npmPackage: pkg.name!,
   tasks: [taskExampleTask],
   hookHandlers: {
     config: import.meta.resolve("./hooks/config.js"),
