@@ -1,14 +1,12 @@
-// We load the plugin here.
-import { HardhatUserConfig } from "hardhat/types";
+import { HardhatUserConfig } from "hardhat/types/config";
 
-import "../../../src/index";
+// We load the plugin here.  It must be registered in the `plugins` array of
+// the HardhatUserConfig to have effect.
+import HardhatExamplePlugin from "../../../src/index.js";
 
 const config: HardhatUserConfig = {
-  solidity: "0.7.3",
-  defaultNetwork: "hardhat",
-  paths: {
-    newPath: "asd",
-  },
+  plugins: [HardhatExamplePlugin],
+  examplePlugin: { value: 'asdf'}
 };
 
 export default config;
