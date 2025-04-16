@@ -1,5 +1,6 @@
 import type {
   ConfigHooks,
+  HardhatUserConfigValidationError,
 } from "hardhat/types/hooks";
 
 const DEFAULT_CONFIG = {
@@ -7,6 +8,21 @@ const DEFAULT_CONFIG = {
 };
 
 export default async (): Promise<Partial<ConfigHooks>> => ({
+  validateUserConfig: async (userConfig) => {
+    const errors: HardhatUserConfigValidationError[] = [];
+
+    // In this example, we return an error if the user set examplePlugin.value to an empty string.
+
+    if (userConfig.examplePlugin?.value?.length === 0) {
+        errors.push({
+          path: ["examplePlugin", "value"],
+          message: "config value must not be empty string",
+        });
+    }
+
+    return errors;
+  },
+
   resolveUserConfig: async (userConfig, resolveConfigurationVariable, next) => {
     // To use this hook, plugins are encouraged to call `next(config)` first, and
     // construct a resolved config based on its result. Note that while that
