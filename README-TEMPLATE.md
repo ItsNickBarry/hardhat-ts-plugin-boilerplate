@@ -35,7 +35,7 @@ import "<your plugin npm package name>";
 
 <_The list of all the required Hardhat plugins if there are any_>
 
-- [@nomiclabs/hardhat-web3](https://github.com/nomiclabs/hardhat/tree/master/packages/hardhat-web3)
+- [@nomicfoundation/hardhat-ethers](https://github.com/NomicFoundation/hardhat/tree/main/packages/hardhat-ethers)
 
 ## Tasks
 

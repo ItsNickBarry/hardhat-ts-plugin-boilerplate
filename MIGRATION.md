@@ -17,7 +17,7 @@ import { extendEnvironment } from "hardhat/config";
 ### Plugins
 
 Similarly, references to buidler plugins should be replaced with their corresponding hardhat plugins.
-For example, `@nomiclabs/buidler-ethers` would be `@nomiclabs/hardhat-ethers`.
+For example, `@nomiclabs/buidler-ethers` would be `@nomicfoundation/hardhat-ethers`.
 
 ## Adapting your plugin's source code
 
@@ -144,10 +144,10 @@ Previously, type extensions were loaded by plugin users by adding references to 
 Now, they're loaded automatically when importing the plugin in a hardhat config file. For example:
 
 ```typescript
-import "@nomiclabs/hardhat-ethers"
+import "@nomicfoundation/hardhat-ethers"
 ```
 
-This is enough to import the type extensions included in the `@nomiclabs/hardhat-ethers` plugin.
+This is enough to import the type extensions included in the `@nomicfoundation/hardhat-ethers` plugin.
 
 ## Adapting your `README.md`
 
