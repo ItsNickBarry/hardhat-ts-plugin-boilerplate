@@ -1,4 +1,4 @@
-import { extendConfig, extendEnvironment } from "hardhat/config";
+import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import { HardhatConfig, HardhatUserConfig } from "hardhat/types";
 import path from "path";
@@ -8,39 +8,6 @@ import { ExampleHardhatRuntimeEnvironmentField } from "./ExampleHardhatRuntimeEn
 // extensions in your npm package's types file.
 import "./type-extensions";
 
-extendConfig(
-  (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) => {
-    // We apply our default config here. Any other kind of config resolution
-    // or normalization should be placed here.
-    //
-    // `config` is the resolved config, which will be used during runtime and
-    // you should modify.
-    // `userConfig` is the config as provided by the user. You should not modify
-    // it.
-    //
-    // If you extended the `HardhatConfig` type, you need to make sure that
-    // executing this function ensures that the `config` object is in a valid
-    // state for its type, including its extensions. For example, you may
-    // need to apply a default value, like in this example.
-    const userPath = userConfig.paths?.newPath;
-
-    let newPath: string;
-    if (userPath === undefined) {
-      newPath = path.join(config.paths.root, "newPath");
-    } else {
-      if (path.isAbsolute(userPath)) {
-        newPath = userPath;
-      } else {
-        // We resolve relative paths starting from the project's root.
-        // Please keep this convention to avoid confusion.
-        newPath = path.normalize(path.join(config.paths.root, userPath));
-      }
-    }
-
-    config.paths.newPath = newPath;
-  },
-);
-
 extendEnvironment((hre) => {
   // We add a field to the Hardhat Runtime Environment here.
   // We use lazyObject to avoid initializing things until they are actually
@@ -49,13 +16,16 @@ extendEnvironment((hre) => {
 });
 
 import type { HardhatPlugin } from "hardhat/types/plugins";
-import pkg from '../package.json';
+import pkg from "../package.json";
 
 // At minimum, a HardhatPlugin must contain an `id`.
 // Here we use the name specified in package.json, removing the NPM namespace if present.
 
 const plugin: HardhatPlugin = {
-  id: pkg.name.split('/').pop()!,
+  id: pkg.name.split("/").pop()!,
+  hookHandlers: {
+    config: import.meta.resolve("./hooks/config.js"),
+  },
 };
 
 // The HardhatPlugin must be exported so that users can register it in their config.
