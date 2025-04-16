@@ -18,18 +18,17 @@ This plugin will help you with world domination by implementing a simple tic-tac
 npm install <your npm package name> [list of peer dependencies]
 ```
 
-Import the plugin in your `hardhat.config.js`:
+Import the plugin in your `hardhat.config.ts` and register it in your `HardhatUserConfig`:
 
-```js
-require("<your plugin npm package name>");
+```typescript
+import HardhatExamplePlugin from "<your plugin npm package name>";
+
+const config: HardhatUserConfig = {
+  plugins: [
+    HardhatExamplePlugin,
+  ],
+};
 ```
-
-Or if you are using TypeScript, in your `hardhat.config.ts`:
-
-```ts
-import "<your plugin npm package name>";
-```
-
 
 ## Required plugins
 
@@ -51,13 +50,6 @@ This plugin adds the _example_ task to Hardhat:
 output of `npx hardhat help example`
 ```
 
-## Environment extensions
-
-<_A description of each extension to the Hardhat Runtime Environment_>
-
-This plugin extends the Hardhat Runtime Environment by adding an `example` field
-whose type is `ExampleHardhatRuntimeEnvironmentField`.
-
 ## Configuration
 
 <_A description of each extension to the HardhatConfig or to its fields_>
@@ -67,11 +59,12 @@ This plugin extends the `HardhatUserConfig`'s `ProjectPathsUserConfig` object wi
 
 This is an example of how to set it:
 
-```js
-module.exports = {
-  paths: {
-    newPath: "new-path"
-  }
+```typescript
+const config: HardhatUserConfig = {
+  examplePlugin: {
+    value: 'asdf',
+  },
+  ...
 };
 ```
 
