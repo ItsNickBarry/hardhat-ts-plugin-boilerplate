@@ -2,7 +2,7 @@
 // Generally these values are required.
 // Any values not specified in the HardhatUserConfig are added in the config hooks.
 export type ExamplePluginConfig = {
-    value: string;
+  value: string;
 };
 
 // Here we declare the typing of the user configuration object.

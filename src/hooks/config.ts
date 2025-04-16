@@ -14,10 +14,10 @@ export default async (): Promise<Partial<ConfigHooks>> => ({
     // In this example, we return an error if the user set examplePlugin.value to an empty string.
 
     if (userConfig.examplePlugin?.value?.length === 0) {
-        errors.push({
-          path: ["examplePlugin", "value"],
-          message: "config value must not be empty string",
-        });
+      errors.push({
+        path: ["examplePlugin", "value"],
+        message: "config value must not be empty string",
+      });
     }
 
     return errors;
@@ -28,7 +28,7 @@ export default async (): Promise<Partial<ConfigHooks>> => ({
     // construct a resolved config based on its result. Note that while that
     // result is typed as `HardhatConfig`, it may actually be incomplete, as other
     // plugins may not have resolved their parts of the config yet.
-    // 
+    //
     // We apply our default config here. Any other kind of config resolution
     // or normalization should be placed here.
     //

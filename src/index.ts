@@ -4,7 +4,7 @@ import "./type-extensions";
 
 import type { HardhatPlugin } from "hardhat/types/plugins";
 import pkg from "../package.json";
-import taskExampleTask from './tasks/example-task.js'
+import taskExampleTask from "./tasks/example-task.js";
 
 // At minimum, a HardhatPlugin must contain an `id`.
 // Here we use the name specified in package.json, removing the NPM namespace if present.

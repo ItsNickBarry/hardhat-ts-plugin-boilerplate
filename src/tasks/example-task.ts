@@ -7,5 +7,8 @@ import { task } from "hardhat/config";
 export default task("example-task")
   .setDescription("Print the examplePlugin config")
   .setAction(import.meta.resolve("../actions/example-task.js"))
-  .addFlag({ name: 'quiet', description: 'Actually, don\'t print anything after all' })
+  .addFlag({
+    name: "quiet",
+    description: "Actually, don't print anything after all",
+  })
   .build();

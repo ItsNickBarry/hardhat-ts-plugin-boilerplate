@@ -6,7 +6,7 @@ import HardhatExamplePlugin from "../../../src/index.js";
 
 const config: HardhatUserConfig = {
   plugins: [HardhatExamplePlugin],
-  examplePlugin: { value: 'asdf'}
+  examplePlugin: { value: "asdf" },
 };
 
 export default config;
