@@ -5,7 +5,7 @@ import { createHardhatRuntimeEnvironment } from "hardhat/hre";
 import { HardhatUserConfig } from "hardhat/config";
 
 import HardhatExamplePlugin from "../src/index.js";
-import { TASK_EXAMPLE_TASK } from "./task-names.js";
+import { TASK_EXAMPLE_TASK } from "../src/task-names.js";
 
 describe("config", () => {
   it("resolves default value", async () => {
