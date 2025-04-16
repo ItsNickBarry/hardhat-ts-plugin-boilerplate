@@ -47,3 +47,14 @@ extendEnvironment((hre) => {
   // needed.
   hre.example = lazyObject(() => new ExampleHardhatRuntimeEnvironmentField());
 });
+
+import type { HardhatPlugin } from "hardhat/types/plugins";
+
+// At minimum, a HardhatPlugin must contain an `id`.
+
+const plugin: HardhatPlugin = {
+  id: "hardhat-plugin",
+};
+
+// The HardhatPlugin must be exported so that users can register it in their config.
+export default plugin;
