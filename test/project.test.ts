@@ -1,46 +1,49 @@
-// eslint:disable-next-line no-implicit-dependencies
-import { assert } from "chai";
-import path from "path";
+import { describe, it } from "node:test";
+import assert from "node:assert";
 
-import { ExampleHardhatRuntimeEnvironmentField } from "../src/ExampleHardhatRuntimeEnvironmentField";
+import { createHardhatRuntimeEnvironment } from "hardhat/hre";
+import { HardhatUserConfig } from "hardhat/config";
 
-import { useEnvironment } from "./helpers";
+import HardhatExamplePlugin from "../src/index.js";
 
-describe("Integration tests examples", function () {
-  describe("Hardhat Runtime Environment extension", function () {
-    useEnvironment("hardhat-project");
+describe("config", () => {
+  it("resolves default value", async () => {
+    const config: HardhatUserConfig = { plugins: [HardhatExamplePlugin] };
+    const hre = await createHardhatRuntimeEnvironment(config);
 
-    it("Should add the example field", function () {
-      assert.instanceOf(
-        this.hre.example,
-        ExampleHardhatRuntimeEnvironmentField,
-      );
-    });
-
-    it("The example field should say hello", function () {
-      assert.equal(this.hre.example.sayHello(), "hello");
-    });
+    assert.equal(hre.config.examplePlugin.value, "DEFAULT_VALUE");
   });
 
-  describe("HardhatConfig extension", function () {
-    useEnvironment("hardhat-project");
+  it("resolves user-supplied value", async () => {
+    const value = "asdf";
+    const config: HardhatUserConfig = {
+      plugins: [HardhatExamplePlugin],
+      examplePlugin: { value },
+    };
+    const hre = await createHardhatRuntimeEnvironment(config);
 
-    it("Should add the newPath to the config", function () {
-      assert.equal(
-        this.hre.config.paths.newPath,
-        path.join(process.cwd(), "asd"),
-      );
+    assert.equal(hre.config.examplePlugin.value, value);
+  });
+
+  it("throws on invalid user-supplied value", async () => {
+    const config: HardhatUserConfig = {
+      plugins: [HardhatExamplePlugin],
+      examplePlugin: { value: "" },
+    };
+
+    assert.rejects(async () => {
+      await createHardhatRuntimeEnvironment(config);
     });
   });
 });
 
-describe("Unit tests examples", function () {
-  describe("ExampleHardhatRuntimeEnvironmentField", function () {
-    describe("sayHello", function () {
-      it("Should say hello", function () {
-        const field = new ExampleHardhatRuntimeEnvironmentField();
-        assert.equal(field.sayHello(), "hello");
-      });
-    });
+describe("example task", () => {
+  it("returns resolved plugin config", async () => {
+    const config: HardhatUserConfig = { plugins: [HardhatExamplePlugin] };
+    const hre = await createHardhatRuntimeEnvironment(config);
+
+    const result = await hre.tasks.getTask("example-task").run({ quiet: true });
+
+    assert.deepEqual(result, { value: "DEFAULT_VALUE" });
   });
 });

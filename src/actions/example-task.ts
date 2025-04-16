@@ -10,7 +10,7 @@ const action: NewTaskActionFunction<ExampleTaskActionArguments> = async (
   hre,
 ): Promise<ExamplePluginConfig> => {
   const config = hre.config.examplePlugin;
-  
+
   if (!args.quiet) {
     console.log("Example Plugin Config:");
     console.log(config);
