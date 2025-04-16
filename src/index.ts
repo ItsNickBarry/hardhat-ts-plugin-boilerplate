@@ -20,15 +20,3 @@ const plugin: HardhatPlugin = {
 
 // The HardhatPlugin must be exported so that users can register it in their config.
 export default plugin;
-
-// import { extendEnvironment } from "hardhat/config";
-// import { lazyObject } from "hardhat/plugins";
-
-// import { ExampleHardhatRuntimeEnvironmentField } from "./ExampleHardhatRuntimeEnvironmentField";
-
-// extendEnvironment((hre) => {
-//   // We add a field to the Hardhat Runtime Environment here.
-//   // We use lazyObject to avoid initializing things until they are actually
-//   // needed.
-//   hre.example = lazyObject(() => new ExampleHardhatRuntimeEnvironmentField());
-// });
