@@ -36,7 +36,7 @@ the interaction of the plugin with Hardhat and its dependencies.
 ## Linting and autoformat
 
 All of Hardhat projects use [prettier](https://prettier.io/) and
-[tslint](https://palantir.github.io/tslint/).
+[eslint](https://eslint.org/).
 
 You can check if your code style is correct by running `npm run lint`, and fix
 it with `npm run lint:fix`.

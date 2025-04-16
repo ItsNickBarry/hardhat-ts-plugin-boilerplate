@@ -14,8 +14,8 @@
     "hardhat-plugin"
   ],
   "scripts": {
-    "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
-    "lint": "tslint --config tslint.json --project tsconfig.json",
+    "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && eslint --fix --config eslint.config.js --ext tsconfig.json",
+    "lint": "eslint --config eslint.config.js --ext tsconfig.json",
     "test": "mocha --exit --recursive 'test/**/*.test.ts'",
     "build": "tsc",
     "watch": "tsc -w",

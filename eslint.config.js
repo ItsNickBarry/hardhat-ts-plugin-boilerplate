@@ -1,0 +1,37 @@
+const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
+
+module.exports = [
+  eslintPluginPrettierRecommended,
+  // {
+  //   "extends": [
+  //     "eslint:latest",
+  //     "eslint-plugin-prettier",
+  //   ],
+  //   "rules": {
+  //     "prettier": true,
+  //     "object-literal-sort-keys": false,
+  //     "no-submodule-imports": false,
+  //     "interface-name": false,
+  //     "max-classes-per-file": false,
+  //     "no-empty": false,
+  //     "no-console": false,
+  //     "only-arrow-functions": false,
+  //     "variable-name": [
+  //       true,
+  //       "check-format",
+  //       "allow-leading-underscore",
+  //       "allow-pascal-case"
+  //     ],
+  //     "ordered-imports": [
+  //       true,
+  //       {
+  //         "grouped-imports": true,
+  //         "import-sources-order": "case-insensitive"
+  //       }
+  //     ],
+  //     "no-floating-promises": true,
+  //     "prefer-conditional-expression": false,
+  //     "no-implicit-dependencies": true
+  //   }
+  // }
+];
