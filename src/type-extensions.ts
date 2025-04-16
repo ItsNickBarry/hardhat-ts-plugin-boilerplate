@@ -6,24 +6,26 @@ import "hardhat/types/runtime";
 
 import { ExampleHardhatRuntimeEnvironmentField } from "./ExampleHardhatRuntimeEnvironmentField";
 
-declare module "hardhat/types/config" {
-  // This is an example of an extension to one of the Hardhat config values.
+import type { ExamplePluginUserConfig, ExamplePluginConfig } from "./types.js";
 
-  // We extend the ProjectPathsUserConfig type, which represents the `paths`
-  // property as written by the users.  This is part of the HardhatUserConfig
-  // type, so things are normally optional here.
-  export interface ProjectPathsUserConfig {
-    newPath?: string;
+declare module "hardhat/types/config" {
+  // This is an example of an extension of the Hardhat config.
+
+  // We extend the HardhatConfig type to include an object which represents our
+  // plugin's configuration after it has been resolved.  This is the type used
+  // during the execution of tasks, tests, and scripts.
+  // This is part of the HardhatConfig type; normally, you don't want things to be
+  // optional here, as you can apply default values using the `resolveUserConfig`
+  // hook.
+  export interface HardhatConfig {
+    examplePlugin: ExamplePluginConfig;
   }
 
-  // We also extend the ProjectPathsConfig type, which represents the `paths`
-  // property after it has been resolved.  This is the type used during the
-  // execution of tasks, tests, and scripts.
-  // This is part of the HardhatConfig type; normally, you don't want things to
-  // be optional here, as you can apply default values using the extendConfig
-  // function.
-  export interface ProjectPathsConfig {
-    newPath: string;
+  // We extend the HardhatUserConfig type to allow the user to configure their
+  // installation of our plugin.
+  // Extensions to HardhatUserConfig are normally optional.
+  export interface HardhatUserConfig {
+    examplePlugin?: ExamplePluginUserConfig;
   }
 }
 
