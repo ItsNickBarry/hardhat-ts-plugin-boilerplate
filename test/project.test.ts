@@ -5,6 +5,7 @@ import { createHardhatRuntimeEnvironment } from "hardhat/hre";
 import { HardhatUserConfig } from "hardhat/config";
 
 import HardhatExamplePlugin from "../src/index.js";
+import { TASK_EXAMPLE_TASK } from "./task-names.js";
 
 describe("config", () => {
   it("resolves default value", async () => {
@@ -42,7 +43,9 @@ describe("example task", () => {
     const config: HardhatUserConfig = { plugins: [HardhatExamplePlugin] };
     const hre = await createHardhatRuntimeEnvironment(config);
 
-    const result = await hre.tasks.getTask("example-task").run({ quiet: true });
+    const result = await hre.tasks
+      .getTask(TASK_EXAMPLE_TASK)
+      .run({ quiet: true });
 
     assert.deepEqual(result, { value: "DEFAULT_VALUE" });
   });
