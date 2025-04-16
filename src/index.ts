@@ -49,11 +49,13 @@ extendEnvironment((hre) => {
 });
 
 import type { HardhatPlugin } from "hardhat/types/plugins";
+import pkg from '../package.json';
 
 // At minimum, a HardhatPlugin must contain an `id`.
+// Here we use the name specified in package.json, removing the NPM namespace if present.
 
 const plugin: HardhatPlugin = {
-  id: "hardhat-plugin",
+  id: pkg.name.split('/').pop()!,
 };
 
 // The HardhatPlugin must be exported so that users can register it in their config.
