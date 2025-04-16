@@ -1,5 +1,6 @@
 import { NewTaskActionFunction } from "hardhat/types/tasks";
 import { ExamplePluginConfig } from "../types.js";
+import { printConfig } from "../lib/example-plugin.js";
 
 export interface ExampleTaskActionArguments {
   quiet: boolean;
@@ -12,8 +13,9 @@ const action: NewTaskActionFunction<ExampleTaskActionArguments> = async (
   const config = hre.config.examplePlugin;
 
   if (!args.quiet) {
-    console.log("Example Plugin Config:");
-    console.log(config);
+    // After retriving the config from the HRE and processing the task args,
+    // we call the core plugin logic.
+    printConfig(config);
   }
 
   return config;
