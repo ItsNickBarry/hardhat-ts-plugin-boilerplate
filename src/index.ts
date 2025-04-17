@@ -11,8 +11,8 @@ import taskExampleTask from "./tasks/example-task.js";
 // Tasks, hook handlers, global options, and dependent plugins must be registered on the HardhatPlugin
 // object in order to have effect.
 const plugin: HardhatPlugin = {
-  id: pkg.name!,
-  npmPackage: pkg.name!,
+  id: pkg.name,
+  npmPackage: pkg.name,
   tasks: [taskExampleTask],
   hookHandlers: {
     config: import.meta.resolve("./hooks/config.js"),
