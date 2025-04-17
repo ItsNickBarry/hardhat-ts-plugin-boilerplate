@@ -18,7 +18,7 @@
     "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && eslint --fix --config eslint.config.js --ext tsconfig.json",
     "lint": "eslint --config eslint.config.js --ext tsconfig.json",
     "test": "hardhat test node --config test/fixture-projects/hardhat-project/hardhat.config.ts",
-    "build": "tsc",
+    "build": "tsc --build --clean",
     "watch": "tsc -w",
     "prepublishOnly": "npm run build"
   },
