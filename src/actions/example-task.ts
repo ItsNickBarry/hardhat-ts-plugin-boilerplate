@@ -2,6 +2,8 @@ import { NewTaskActionFunction } from "hardhat/types/tasks";
 import { ExamplePluginConfig } from "../types.js";
 import { printConfig } from "../lib/example-plugin.js";
 
+// While not required, passing a type parameter to NewTaskActionFunction enables
+// type checking of the task arguments in the function body.
 export interface ExampleTaskActionArguments {
   quiet: boolean;
 }
